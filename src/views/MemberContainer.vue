@@ -59,7 +59,7 @@
                     url
                 };
                 this.$axios(options)*/
-                this.$axios.post("bcp/account",Qs.stringify({brandType: 1, userPin: 'zhangsan'}))
+                this.$axios.post("bcp/account",Qs.stringify({brandType: '1', userPin: 'zhangsan'}))
                     .then(result => {
                         console.log("result:" + result.data.success);
                         if (result.data.success) {
