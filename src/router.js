@@ -5,7 +5,7 @@ import MemberContainer from './views/MemberContainer'
 import SearchContainer from './views/SearchContainer'
 import ShopcartContainer from "./views/ShopcartContainer"
 import NewList from './components/news/NewsList'
-import NewsInfo from './components/news/newsInfo'
+import NewsInfo from './components/news/NewsInfo'
 import PhotoList from './components/photos/PhotoList'
 import PhotoInfo from './components/photos/PhotoInfo'
 import GoodsList from './components/goods/GoodsList'

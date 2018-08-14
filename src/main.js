@@ -2,9 +2,25 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Axios from 'axios'
+import axios from 'axios'
+import Qs from 'qs'
 
-Vue.prototype.$axios = Axios;
+const instance = axios.create({
+        baseURL: 'http://localhost/',
+        timeout: 1000,
+        paramsSerializer: function (params) {
+            return Qs.stringify(params, {arrayFormat: 'brackets'})
+        },
+        // 指定允许其他域名访问  响应类型
+        /*headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'x-requested-with, content-type'
+        }*/
+    })
+;
+
+Vue.prototype.$axios = instance;
 
 // // 导入 MUI 的样式
 import './assets/mui/css/mui.min.css'
@@ -19,6 +35,7 @@ import './assets/mui/css/icons-extra.css'
 // Vue.use(Lazyload);
 
 import MintUI from 'mint-ui'
+
 Vue.use(MintUI)
 // 导入 mint-ui 的样式
 import 'mint-ui/lib/style.css'
@@ -33,12 +50,17 @@ Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
 
 // 安装 图片预览插件
 import VuePreview from 'vue-preview'
+
 Vue.use(VuePreview)
+
+import infiniteScroll from 'vue-infinite-scroll';
+
+Vue.use(infiniteScroll)
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
