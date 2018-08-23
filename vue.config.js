@@ -2,7 +2,7 @@ module.exports = {
     // 基本路径
     baseUrl: '/',
     // 输出文件目录
-    outputDir: 'dist',
+    outputDir: process.env.NODE_ENV === 'production' ? 'dist/prod' : 'dist/dev',
     // eslint-loader 是否在保存的时候检查
     lintOnSave: true,
     // use the full build with in-browser compiler?
@@ -11,25 +11,39 @@ module.exports = {
     // webpack配置
     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
     chainWebpack: config => {
-        // const svgRule = config.module.rule('svg')
-        // 清除已有的所有 loader。
-        // 如果你不这样做，接下来的 loader 会附加在该规则现有的 loader 之后。
-        // svgRule.uses.clear()
-
-        // add the new one
-        // 添加要替换的 loader
-        // svgRule
-        //     .use('vue-svg-loader')
-        //     .loader('vue-svg-loader')
+        /*config
+            .plugin('uglifyjs')
+            .tap(args => {
+                args[0] = {
+                    uglifyOptions: {
+                        compress: {
+                            drop_console: true,
+                            pure_funcs: ['console.log']
+                        }
+                    }
+                };
+                return args;
+            });*/
 
         if (process.env.NODE_ENV === 'production') {
             // 为生产环境修改配置...
+
         } else {
             // 为开发环境修改配置...
-            config.resolve.alias.set("vue$","vue/dist/vue.js")
+            config.resolve.alias.set("vue$", "vue/dist/vue.js")
         }
     },
     configureWebpack: config => {
+        /*plugins: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    compress: {
+                        drop_console: true,
+                        pure_funcs: ['console.log']
+                    }
+                }
+            })
+        ]*/
         if (process.env.NODE_ENV === 'production') {
             // 为生产环境修改配置...
         } else {
@@ -72,7 +86,8 @@ module.exports = {
         https: false,
         hotOnly: false,
         proxy: null, // 设置代理
-        before: app => {}
+        before: app => {
+        }
     },
     // 第三方插件配置
     pluginOptions: {

@@ -1,6 +1,7 @@
 <template>
     <div>
         <SMS ref="timerbtn" v-on:run="sendCode" v-bind:second="120"></SMS>
+        <loading></loading>
         <form>
             <mt-field label="用户名" placeholder="请输入用户名" v-model="username"></mt-field>
             <mt-field label="邮箱" placeholder="请输入邮箱" type="email" v-model="email"></mt-field>
@@ -17,6 +18,7 @@
 
 <script>
     import SMS from '../components/common/SMSVerification'
+    import loading from '../components/common/loading'
 
     export default {
         name: "Search",
@@ -43,7 +45,8 @@
             }
         },
         components: {
-            SMS
+            SMS,
+            loading
         }
     }
 </script>

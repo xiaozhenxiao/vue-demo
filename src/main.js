@@ -5,6 +5,9 @@ import store from './store'
 import axios from 'axios'
 import Qs from 'qs'
 
+import VueLoading from 'vue-loading-template'
+Vue.use(VueLoading)
+
 const instance = axios.create({
         baseURL: 'http://localhost/',
         timeout: 1000,

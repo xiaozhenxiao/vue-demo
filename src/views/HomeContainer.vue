@@ -55,6 +55,7 @@
         },
         created() {
             this.getLunbotu();
+            this.test();
         },
         methods: {
             getLunbotu() {
@@ -69,6 +70,20 @@
                         // console.log("error: " + response)
                         Toast('获取轮播图失败！')
                     });
+            },
+            test(){
+                let opt = {};
+                let target = { a: 1 };
+                let source1 = { b: 2 };
+                let source2 = { c: 3 };
+                Object.assign(opt, source1, source2,{
+                    uglifyOptions: { compress: {
+                            drop_console : true,
+                            pure_funcs: ['console.log']
+                        }}
+                });
+                console.log("test:")
+                console.log(opt)
             }
         },
         components: {
