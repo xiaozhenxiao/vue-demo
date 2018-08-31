@@ -38,6 +38,8 @@ import './assets/mui/css/icons-extra.css'
 // Vue.use(Lazyload);
 
 import MintUI from 'mint-ui'
+import { Indicator } from 'mint-ui'
+Vue.prototype.$loading=Indicator;
 
 Vue.use(MintUI)
 // 导入 mint-ui 的样式

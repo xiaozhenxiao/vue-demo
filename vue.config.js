@@ -11,41 +11,29 @@ module.exports = {
     // webpack配置
     // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
     chainWebpack: config => {
-        /*config
-            .plugin('uglifyjs')
-            .tap(args => {
-                args[0] = {
-                    uglifyOptions: {
-                        compress: {
-                            drop_console: true,
-                            pure_funcs: ['console.log']
-                        }
-                    }
-                };
-                return args;
-            });*/
 
         if (process.env.NODE_ENV === 'production') {
             // 为生产环境修改配置...
-
         } else {
             // 为开发环境修改配置...
             config.resolve.alias.set("vue$", "vue/dist/vue.js")
         }
     },
     configureWebpack: config => {
-        /*plugins: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    compress: {
-                        drop_console: true,
-                        pure_funcs: ['console.log']
-                    }
-                }
-            })
-        ]*/
         if (process.env.NODE_ENV === 'production') {
             // 为生产环境修改配置...
+            const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+            config.optimization.minimizer = [
+                new UglifyJsPlugin({
+                    uglifyOptions: {
+                        compress: {
+                            drop_console: true,
+                            drop_debugger: true,
+                            pure_funcs: ['console.log']
+                        }
+                    }
+                })
+            ]
         } else {
             // 为开发环境修改配置...
             // config.plugins.push(new DashboardPlugin())

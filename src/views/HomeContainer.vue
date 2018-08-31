@@ -65,6 +65,8 @@
                         if (response.data.status === 0) {
                             this.lunbotuList = response.data.message;
                         }
+                        this.$loading.close();
+                        console.log("关闭Loding")
                     })
                     .catch(response => {
                         // console.log("error: " + response)
@@ -72,18 +74,8 @@
                     });
             },
             test(){
-                let opt = {};
-                let target = { a: 1 };
-                let source1 = { b: 2 };
-                let source2 = { c: 3 };
-                Object.assign(opt, source1, source2,{
-                    uglifyOptions: { compress: {
-                            drop_console : true,
-                            pure_funcs: ['console.log']
-                        }}
-                });
-                console.log("test:")
-                console.log(opt)
+                this.$loading.open("加载中……");
+                console.log("test:加载中……")
             }
         },
         components: {
